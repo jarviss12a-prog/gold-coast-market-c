@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Coast Market - River North's Premier Liquor & Convenience Store</title>
+    <meta name="description" content="Gold Coast Market in River North, Chicago. Premium liquor store featuring craft beer, wine, spirits & whiskey. We deliver! Open 9AM-12AM daily.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            color: #2d2d2d;
+            background-color: #faf8f5;
+            font-weight: 400;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a3a2a;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: #2d2d2d;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #1a3a2a;
+        }
+
+        .delivery-badge {
+            background: #1a3a2a;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .delivery-badge:hover {
+            background: #c4a265;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 60px 0;
+        }
+
+        .hero-content {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .hero-content.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #1a3a2a;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: #c4a265;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            color: #2d2d2d;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .stars {
+            color: #c4a265;
+            font-size: 20px;
+        }
+
+        .rating-text {
+            color: #2d2d2d;
+            font-weight: 500;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background: #1a3a2a;
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #c4a265;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #1a3a2a;
+            padding: 16px 32px;
+            border: 2px solid #1a3a2a;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: #1a3a2a;
+            color: white;
+        }
+
+        /* Category Grid */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .category-grid.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(26, 58, 42, 0.15);
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background: #1a3a2a;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .category-card h3 {
+            font-size: 1.3rem;
+            color: #1a3a2a;
+            margin-bottom: 10px;
+        }
+
+        .category-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Delivery Banner */
+        .delivery-banner {
+            background: linear-gradient(135deg, #1a3a2a 0%, #2d4a3a 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+            margin: 80px 0;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .delivery-banner.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delivery-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c4a265' fill-opacity='0.1'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E") repeat;
+        }
+
+        .delivery-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .delivery-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .delivery-banner p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Categories Section */
+        .categories-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #1a3a2a;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .section-title.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+            transition-delay: 0.2s;
+        }
+
+        .section-subtitle.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .categories-scroll {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 20px 0;
+            scroll-snap-type: x mandatory;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+            transition-delay: 0.4s;
+        }
+
+        .categories-scroll.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .categories-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .categories-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .categories-scroll::-webkit-scrollbar-thumb {
+            background: #1a3a2a;
+            border-radius: 3px;
+        }
+
+        .category-item {
+            min-width: 280px;
+            background: white;
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            scroll-snap-align: start;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .category-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(26, 58, 42, 0.15);
+        }
+
+        .category-item .category-icon {
+            margin-bottom: 25px;
+        }
+
+        .category-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #1a3a2a;
+        }
+
+        .category-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Our Story Section */
+        .story-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .story-content {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease;
+        }
+
+        .story-content.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .story-pullquote {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s ease;
+        }
+
+        .story-pullquote.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .story-content h2 {
+            font-size: 2.5rem;
+            color: #1a3a2a;
+            margin-bottom: 30px;
+        }
+
+        .story-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .pullquote {
+            font-size: 2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            color: #1a3a2a;
+            line-height: 1.3;
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .pullquote::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 4rem;
+            color: #c4a265;
+            line-height: 1;
+        }
+
+        /* Info Section */
+        .info-section {
+            padding: 100px 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+        }
+
+        .info-item {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .info-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .info-item:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .info-item:nth-child(3) {
+            transition-delay: 0.4s;
+        }
+
+        .info-icon {
+            width: 80px;
+            height: 80px;
+            background: #1a3a2a;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: white;
+        }
+
+        .info-item h3 {
+            font-size: 1.5rem;
+            color: #1a3a2a;
+            margin-bottom: 15px;
+        }
+
+        .info-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .map-container {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .map-container.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .map-container h2 {
+            font-size: 2.5rem;
+            color: #1a3a2a;
+            margin-bottom: 20px;
+        }
+
+        .map-container p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .address {
+            background: #faf8f5;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 40px auto;
+            max-width: 600px;
+        }
+
+        .address h3 {
+            color: #1a3a2a;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .address p {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a3a2a;
+            color: white;
+            padding: 60px 0 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #c4a265;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: #c4a265;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #2d4a3a;
+            color: #999;
+        }
+
+        .footer-bottom a {
+            color: #c4a265;
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .pullquote {
+                font-size: 1.5rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .delivery-banner h2 {
+                font-size: 2rem;
+            }
+
+            .categories-scroll {
+                padding-left: 20px;
+            }
+
+            .story-content,
+            .story-pullquote {
+                transform: none;
+            }
+
+            .story-content.animate,
+            .story-pullquote.animate {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Gold Coast Market</a>
+            <ul class="nav-links">
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#story">Our Story</a></li>
+                <li><a href="#location">Location</a></li>
+            </ul>
+            <a href="tel:+13126647400" class="delivery-badge">We Deliver</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero container">
+        <div class="hero-content">
+            <h1>Gold Coast Market</h1>
+            <p class="tagline">River North's Premier Liquor & Convenience Store</p>
+            <p class="hero-description">Your neighborhood destination for premium spirits, craft beer, fine wines, and everyday essentials. Serving the heart of Chicago with quality and convenience since day one.</p>
+            
+            <div class="rating">
+                <div class="stars">★★★★★</div>
+                <span class="rating-text">4.6 out of 5 (114 Google Reviews)</span>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="https://www.doordash.com/en/store/gold-coast-market-chicago-29715359/" target="_blank" class="btn-primary">Order Delivery</a>
+                <a href="#location" class="btn-secondary">Visit Our Store</a>
+            </div>
+        </div>
+
+        <div class="category-grid">
+            <div class="category-card">
+                <div class="category-icon">🍺</div>
+                <h3>Beer & Craft</h3>
+                <p>Local brews and international favorites</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🍷</div>
+                <h3>Wine</h3>
+                <p>Carefully curated wine selection</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🥃</div>
+                <h3>Spirits & Whiskey</h3>
+                <p>Premium spirits and rare finds</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🍹</div>
+                <h3>Mixers & More</h3>
+                <p>Everything you need for perfect cocktails</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Banner -->
+    <section class="delivery-banner">
+        <div class="container delivery-content">
+            <h2>We Deliver to Your Door</h2>
+            <p>Fast, reliable delivery throughout River North and surrounding neighborhoods</p>
+            <a href="https://www.doordash.com/en/store/gold-coast-market-chicago-29715359/" target="_blank" class="btn-primary">Order Delivery</a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories-section container">
+        <h2 class="section-title">Our Premium Selection</h2>
+        <p class="section-subtitle">From everyday essentials to special occasion spirits, we've curated the finest selection in River North</p>
+        
+        <div class="categories-scroll">
+            <div class="category-item">
+                <div class="category-icon">B</div>
+                <h3>Craft Beer</h3>
+                <p>Local Chicago breweries and international craft selections. From IPAs to stouts, we have the perfect brew for every taste.</p>
+            </div>
+            <div class="category-item">
+                <div class="category-icon">W</div>
+                <h3>Fine Wine</h3>
+                <p>Carefully selected wines from renowned regions worldwide. Perfect for dinner parties or quiet evenings at home.</p>
+            </div>
+            <div class="category-item">
+                <div class="category-icon">S</div>
+                <h3>Premium Spirits</h3>
+                <p>Top-shelf whiskey, vodka, gin, and rum. Rare finds and classic favorites for the discerning drinker.</p>
+            </div>
+            <div class="category-item">
+                <div class="category-icon">M</div>
+                <h3>Mixers & Essentials</h3>
+                <p>Everything you need for the perfect cocktail, plus snacks and convenience items for daily needs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section id="story" class="story-section">
+        <div class="container story-grid">
+            <div class="story-content">
+                <h2>Our Story</h2>
+                <p>Located in the heart of River North, Gold Coast Market has been serving Chicago's most vibrant neighborhood with premium liquor and convenience items. We believe in quality, convenience, and exceptional service.</p>
+                
+                <p>Our carefully curated selection reflects the sophisticated tastes of our community, while our commitment to service ensures you always find what you need, when you need it.</p>
+                
+                <p>Whether you're hosting a dinner party, looking for a special bottle to celebrate, or just need everyday essentials, we're here to serve you with a smile.</p>
+            </div>
+            
+            <div class="story-pullquote">
+                <blockquote class="pullquote">Quality products, neighborhood service, and the convenience you deserve.</blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section container">
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-icon">⏰</div>
+                <h3>Always Open</h3>
+                <p>9AM - 12AM daily<br>Every single day<br>365 days a year</p>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">🚚</div>
+                <h3>Fast Delivery</h3>
+                <p>Quick delivery throughout<br>River North and<br>surrounding areas</p>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">⭐</div>
+                <h3>Trusted Choice</h3>
+                <p>4.6 star rating from<br>114 Google Reviews<br>Community favorite</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map/Location Section -->
+    <section id="location" class="map-section">
+        <div class="container map-container">
+            <h2>Visit Our Store</h2>
+            <p>Conveniently located in the heart of River North</p>
+            
+            <div class="address">
+                <h3>Gold Coast Market</h3>
+                <p><strong>71 W Chicago Ave</strong></p>
+                <p>Chicago, IL 60654 (River North)</p>
+                <p><strong>Phone:</strong> <a href="tel:+13126647400">(312) 664-7400</a></p>
+                <p><strong>Hours:</strong> 9AM - 12AM Daily</p>
+            </div>
+            
+            <a href="https://maps.google.com/?q=71+W+Chicago+Ave,+Chicago,+IL+60654" target="_blank" class="btn-primary">Get Directions</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>71 W Chicago Ave<br>
+                    Chicago, IL 60654</p>
+                    <p><a href="tel:+13126647400">(312) 664-7400</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Hours</h3>
+                    <p>Monday - Sunday<br>
+                    9:00 AM - 12:00 AM</p>
+                    <p>We deliver!</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <p>Premium Liquor<br>
+                    Craft Beer & Wine<br>
+                    Convenience Items<br>
+                    Local Delivery</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Gold Coast Market. All rights reserved. | 
+                <a href="https://cornerdigitalgroup.com" target="_blank">Powered by Corner Digital Group</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements that should animate
+        const animateElements = document.querySelectorAll(
+            '.hero-content, .category-grid, .delivery-banner, .section-title, .section-subtitle, .categories-scroll, .story-content, .story-pullquote, .info-item, .map-container'
+        );
+
+        animateElements.forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Initialize hero animation on page load
+        window.addEventListener('load', () => {
+            const heroContent = document.querySelector('.hero-content');
+            const categoryGrid = document.querySelector('.category-grid');
+            
+            setTimeout(() => {
+                heroContent.classList.add('animate');
+            }, 300);
+            
+            setTimeout(() => {
+                categoryGrid.classList.add('animate');
+            }, 600);
+        });
+    </script>
+</body>
+</html>
